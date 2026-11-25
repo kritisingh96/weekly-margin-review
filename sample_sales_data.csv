@@ -1,0 +1,193 @@
+week_start,sku,retailer,cases,price_per_case,trade_per_case,cogs_per_case,freight_per_case,net_sales,gross_profit
+2026-09-21,Protein Bar Choc PB 12ct,Target,3411,18.0,0.0,9.9,0.9,61398.0,24559.2
+2026-09-28,Protein Bar Choc PB 12ct,Target,3361,18.0,0.0,9.9,0.9,60498.0,24199.2
+2026-10-05,Protein Bar Choc PB 12ct,Target,3298,18.0,0.0,9.9,0.9,59364.0,23745.6
+2026-10-12,Protein Bar Choc PB 12ct,Target,3455,18.0,0.0,9.9,0.9,62190.0,24876.0
+2026-10-19,Protein Bar Choc PB 12ct,Target,3403,18.0,0.0,9.9,0.9,61254.0,24501.6
+2026-10-26,Protein Bar Choc PB 12ct,Target,3699,18.0,0.0,9.9,0.9,66582.0,26632.8
+2026-11-02,Protein Bar Choc PB 12ct,Target,4054,18.0,0.0,9.9,0.9,72972.0,29188.8
+2026-11-09,Protein Bar Choc PB 12ct,Target,5745,18.0,3.0,9.9,0.9,86175.0,24129.0
+2026-09-21,Protein Bar Choc PB 12ct,Costco,4788,17.0,0.0,9.9,0.55,81396.0,31361.4
+2026-09-28,Protein Bar Choc PB 12ct,Costco,5222,17.0,0.0,9.9,0.55,88774.0,34204.1
+2026-10-05,Protein Bar Choc PB 12ct,Costco,5283,17.0,0.0,9.9,0.55,89811.0,34603.65
+2026-10-12,Protein Bar Choc PB 12ct,Costco,5305,17.0,0.0,9.9,0.55,90185.0,34747.75
+2026-10-19,Protein Bar Choc PB 12ct,Costco,5072,17.0,0.0,9.9,0.55,86224.0,33221.6
+2026-10-26,Protein Bar Choc PB 12ct,Costco,5461,17.0,0.0,9.9,0.55,92837.0,35769.55
+2026-11-02,Protein Bar Choc PB 12ct,Costco,5803,17.0,0.0,9.9,0.55,98651.0,38009.65
+2026-11-09,Protein Bar Choc PB 12ct,Costco,5213,17.0,0.0,9.9,0.55,88621.0,34145.15
+2026-09-21,Protein Bar Choc PB 12ct,Walmart,2640,17.4,0.0,9.9,0.85,45936.0,17556.0
+2026-09-28,Protein Bar Choc PB 12ct,Walmart,2804,17.4,0.0,9.9,0.85,48789.6,18646.6
+2026-10-05,Protein Bar Choc PB 12ct,Walmart,2756,17.4,0.0,9.9,0.85,47954.4,18327.4
+2026-10-12,Protein Bar Choc PB 12ct,Walmart,3114,17.4,0.0,9.9,0.85,54183.6,20708.1
+2026-10-19,Protein Bar Choc PB 12ct,Walmart,2973,17.4,0.0,9.9,0.85,51730.2,19770.45
+2026-10-26,Protein Bar Choc PB 12ct,Walmart,3331,17.4,0.0,9.9,0.85,57959.4,22151.15
+2026-11-02,Protein Bar Choc PB 12ct,Walmart,3368,17.4,0.0,9.9,0.85,58603.2,22397.2
+2026-11-09,Protein Bar Choc PB 12ct,Walmart,3359,17.4,0.0,9.9,0.85,58446.6,22337.35
+2026-09-21,Protein Bar Choc PB 12ct,Vitamin Shoppe,2496,19.5,0.0,9.9,1.1,48672.0,21216.0
+2026-09-28,Protein Bar Choc PB 12ct,Vitamin Shoppe,2901,19.5,0.0,9.9,1.1,56569.5,24658.5
+2026-10-05,Protein Bar Choc PB 12ct,Vitamin Shoppe,3048,19.5,0.0,9.9,1.1,59436.0,25908.0
+2026-10-12,Protein Bar Choc PB 12ct,Vitamin Shoppe,3137,19.5,0.0,9.9,1.1,61171.5,26664.5
+2026-10-19,Protein Bar Choc PB 12ct,Vitamin Shoppe,2883,19.5,0.0,9.9,1.1,56218.5,24505.5
+2026-10-26,Protein Bar Choc PB 12ct,Vitamin Shoppe,3141,19.5,0.0,9.9,1.1,61249.5,26698.5
+2026-11-02,Protein Bar Choc PB 12ct,Vitamin Shoppe,3099,19.5,0.0,9.9,1.1,60430.5,26341.5
+2026-11-09,Protein Bar Choc PB 12ct,Vitamin Shoppe,3188,19.5,0.0,9.9,1.1,62166.0,27098.0
+2026-09-21,Protein Bar Dark Choc Sea Salt 12ct,Target,3025,18.0,0.0,10.1,0.9,54450.0,21175.0
+2026-09-28,Protein Bar Dark Choc Sea Salt 12ct,Target,3237,18.0,0.0,10.1,0.9,58266.0,22659.0
+2026-10-05,Protein Bar Dark Choc Sea Salt 12ct,Target,3482,18.0,0.0,10.1,0.9,62676.0,24374.0
+2026-10-12,Protein Bar Dark Choc Sea Salt 12ct,Target,3252,18.0,0.0,10.1,0.9,58536.0,22764.0
+2026-10-19,Protein Bar Dark Choc Sea Salt 12ct,Target,3411,18.0,0.0,10.1,0.9,61398.0,23877.0
+2026-10-26,Protein Bar Dark Choc Sea Salt 12ct,Target,3521,18.0,0.0,10.1,0.9,63378.0,24647.0
+2026-11-02,Protein Bar Dark Choc Sea Salt 12ct,Target,3575,18.0,0.0,10.1,0.9,64350.0,25025.0
+2026-11-09,Protein Bar Dark Choc Sea Salt 12ct,Target,3358,18.0,0.0,10.71,0.9,60444.0,21457.62
+2026-09-21,Protein Bar Dark Choc Sea Salt 12ct,Costco,2694,17.0,0.0,10.1,0.55,45798.0,17106.9
+2026-09-28,Protein Bar Dark Choc Sea Salt 12ct,Costco,2958,17.0,0.0,10.1,0.55,50286.0,18783.3
+2026-10-05,Protein Bar Dark Choc Sea Salt 12ct,Costco,2530,17.0,0.0,10.1,0.55,43010.0,16065.5
+2026-10-12,Protein Bar Dark Choc Sea Salt 12ct,Costco,2989,17.0,0.0,10.1,0.55,50813.0,18980.15
+2026-10-19,Protein Bar Dark Choc Sea Salt 12ct,Costco,2917,17.0,0.0,10.1,0.55,49589.0,18522.95
+2026-10-26,Protein Bar Dark Choc Sea Salt 12ct,Costco,2836,17.0,0.0,10.1,0.55,48212.0,18008.6
+2026-11-02,Protein Bar Dark Choc Sea Salt 12ct,Costco,3364,17.0,0.0,10.1,0.55,57188.0,21361.4
+2026-11-09,Protein Bar Dark Choc Sea Salt 12ct,Costco,3197,17.0,0.0,10.71,0.55,54349.0,18350.78
+2026-09-21,Protein Bar Dark Choc Sea Salt 12ct,Walmart,1096,17.4,0.0,10.1,0.85,19070.4,7069.2
+2026-09-28,Protein Bar Dark Choc Sea Salt 12ct,Walmart,1152,17.4,0.0,10.1,0.85,20044.8,7430.4
+2026-10-05,Protein Bar Dark Choc Sea Salt 12ct,Walmart,1122,17.4,0.0,10.1,0.85,19522.8,7236.9
+2026-10-12,Protein Bar Dark Choc Sea Salt 12ct,Walmart,1204,17.4,0.0,10.1,0.85,20949.6,7765.8
+2026-10-19,Protein Bar Dark Choc Sea Salt 12ct,Walmart,1174,17.4,0.0,10.1,0.85,20427.6,7572.3
+2026-10-26,Protein Bar Dark Choc Sea Salt 12ct,Walmart,1249,17.4,0.0,10.1,0.85,21732.6,8056.05
+2026-11-02,Protein Bar Dark Choc Sea Salt 12ct,Walmart,1328,17.4,0.0,10.1,0.85,23107.2,8565.6
+2026-11-09,Protein Bar Dark Choc Sea Salt 12ct,Walmart,1194,17.4,0.0,10.71,0.85,20775.6,6972.96
+2026-09-21,Protein Bar Dark Choc Sea Salt 12ct,Vitamin Shoppe,970,19.5,0.0,10.1,1.1,18915.0,8051.0
+2026-09-28,Protein Bar Dark Choc Sea Salt 12ct,Vitamin Shoppe,950,19.5,0.0,10.1,1.1,18525.0,7885.0
+2026-10-05,Protein Bar Dark Choc Sea Salt 12ct,Vitamin Shoppe,1004,19.5,0.0,10.1,1.1,19578.0,8333.2
+2026-10-12,Protein Bar Dark Choc Sea Salt 12ct,Vitamin Shoppe,944,19.5,0.0,10.1,1.1,18408.0,7835.2
+2026-10-19,Protein Bar Dark Choc Sea Salt 12ct,Vitamin Shoppe,999,19.5,0.0,10.1,1.1,19480.5,8291.7
+2026-10-26,Protein Bar Dark Choc Sea Salt 12ct,Vitamin Shoppe,1042,19.5,0.0,10.1,1.1,20319.0,8648.6
+2026-11-02,Protein Bar Dark Choc Sea Salt 12ct,Vitamin Shoppe,1132,19.5,0.0,10.1,1.1,22074.0,9395.6
+2026-11-09,Protein Bar Dark Choc Sea Salt 12ct,Vitamin Shoppe,1168,19.5,0.0,10.71,1.1,22776.0,8981.92
+2026-09-21,High Protein Bar Milk Choc 12ct,Target,3207,20.16,0.0,11.3,0.9,64653.12,25527.72
+2026-09-28,High Protein Bar Milk Choc 12ct,Target,3568,20.16,0.0,11.3,0.9,71930.88,28401.28
+2026-10-05,High Protein Bar Milk Choc 12ct,Target,3083,20.16,0.0,11.3,0.9,62153.28,24540.68
+2026-10-12,High Protein Bar Milk Choc 12ct,Target,3470,20.16,0.0,11.3,0.9,69955.2,27621.2
+2026-10-19,High Protein Bar Milk Choc 12ct,Target,3616,20.16,0.0,11.3,0.9,72898.56,28783.36
+2026-10-26,High Protein Bar Milk Choc 12ct,Target,3984,20.16,0.0,11.3,0.9,80317.44,31712.64
+2026-11-02,High Protein Bar Milk Choc 12ct,Target,3928,20.16,0.0,11.3,0.9,79188.48,31266.88
+2026-11-09,High Protein Bar Milk Choc 12ct,Target,3764,20.16,0.0,11.3,0.9,75882.24,29961.44
+2026-09-21,High Protein Bar Milk Choc 12ct,Costco,2698,19.04,0.0,11.3,0.55,51369.92,19398.62
+2026-09-28,High Protein Bar Milk Choc 12ct,Costco,2772,19.04,0.0,11.3,0.55,52778.88,19930.68
+2026-10-05,High Protein Bar Milk Choc 12ct,Costco,3132,19.04,0.0,11.3,0.55,59633.28,22519.08
+2026-10-12,High Protein Bar Milk Choc 12ct,Costco,2850,19.04,0.0,11.3,0.55,54264.0,20491.5
+2026-10-19,High Protein Bar Milk Choc 12ct,Costco,2926,19.04,0.0,11.3,0.55,55711.04,21037.94
+2026-10-26,High Protein Bar Milk Choc 12ct,Costco,3100,19.04,0.0,11.3,0.55,59024.0,22289.0
+2026-11-02,High Protein Bar Milk Choc 12ct,Costco,3068,19.04,0.0,11.3,0.55,58414.72,22058.92
+2026-11-09,High Protein Bar Milk Choc 12ct,Costco,3109,19.04,0.0,11.3,0.55,59195.36,22353.71
+2026-09-21,High Protein Bar Milk Choc 12ct,Walmart,2373,19.49,0.0,11.3,0.85,46249.77,17417.82
+2026-09-28,High Protein Bar Milk Choc 12ct,Walmart,2358,19.49,0.0,11.3,0.85,45957.42,17307.72
+2026-10-05,High Protein Bar Milk Choc 12ct,Walmart,2642,19.49,0.0,11.3,0.85,51492.58,19392.28
+2026-10-12,High Protein Bar Milk Choc 12ct,Walmart,2616,19.49,0.0,11.3,0.85,50985.84,19201.44
+2026-10-19,High Protein Bar Milk Choc 12ct,Walmart,2561,19.49,0.0,11.3,0.85,49913.89,18797.74
+2026-10-26,High Protein Bar Milk Choc 12ct,Walmart,2717,19.49,0.0,11.3,0.85,52954.33,19942.78
+2026-11-02,High Protein Bar Milk Choc 12ct,Walmart,2605,19.49,0.0,11.3,0.85,50771.45,19120.7
+2026-11-09,High Protein Bar Milk Choc 12ct,Walmart,2878,19.49,0.0,11.3,0.85,56092.22,21124.52
+2026-09-21,High Protein Bar Milk Choc 12ct,Vitamin Shoppe,2337,21.84,0.0,11.3,1.1,51040.08,22061.28
+2026-09-28,High Protein Bar Milk Choc 12ct,Vitamin Shoppe,2468,21.84,0.0,11.3,1.1,53901.12,23297.92
+2026-10-05,High Protein Bar Milk Choc 12ct,Vitamin Shoppe,2243,21.84,0.0,11.3,1.1,48987.12,21173.92
+2026-10-12,High Protein Bar Milk Choc 12ct,Vitamin Shoppe,2529,21.84,0.0,11.3,1.1,55233.36,23873.76
+2026-10-19,High Protein Bar Milk Choc 12ct,Vitamin Shoppe,2269,21.84,0.0,11.3,1.1,49554.96,21419.36
+2026-10-26,High Protein Bar Milk Choc 12ct,Vitamin Shoppe,2257,21.84,0.0,11.3,1.1,49292.88,21306.08
+2026-11-02,High Protein Bar Milk Choc 12ct,Vitamin Shoppe,2570,21.84,0.0,11.3,1.1,56128.8,24260.8
+2026-11-09,High Protein Bar Milk Choc 12ct,Vitamin Shoppe,2521,21.84,0.0,11.3,1.1,55058.64,23798.24
+2026-09-21,Iced Oatmeal Cookie Bar 12ct,Target,1149,18.0,0.0,10.0,0.9,20682.0,8157.9
+2026-09-28,Iced Oatmeal Cookie Bar 12ct,Target,981,18.0,0.0,10.0,0.9,17658.0,6965.1
+2026-10-05,Iced Oatmeal Cookie Bar 12ct,Target,1014,18.0,0.0,10.0,0.9,18252.0,7199.4
+2026-10-12,Iced Oatmeal Cookie Bar 12ct,Target,1087,18.0,0.0,10.0,0.9,19566.0,7717.7
+2026-10-19,Iced Oatmeal Cookie Bar 12ct,Target,1126,18.0,0.0,10.0,0.9,20268.0,7994.6
+2026-10-26,Iced Oatmeal Cookie Bar 12ct,Target,1102,18.0,0.0,10.0,0.9,19836.0,7824.2
+2026-11-02,Iced Oatmeal Cookie Bar 12ct,Target,1120,18.0,0.0,10.0,0.9,20160.0,7952.0
+2026-11-09,Iced Oatmeal Cookie Bar 12ct,Target,1203,18.0,0.0,10.0,0.9,21654.0,8541.3
+2026-09-21,Iced Oatmeal Cookie Bar 12ct,Costco,4566,17.0,0.0,10.0,0.55,77622.0,29450.7
+2026-09-28,Iced Oatmeal Cookie Bar 12ct,Costco,4236,17.0,0.0,10.0,0.55,72012.0,27322.2
+2026-10-05,Iced Oatmeal Cookie Bar 12ct,Costco,4583,17.0,0.0,10.0,0.55,77911.0,29560.35
+2026-10-12,Iced Oatmeal Cookie Bar 12ct,Costco,4703,17.0,0.0,10.0,0.55,79951.0,30334.35
+2026-10-19,Iced Oatmeal Cookie Bar 12ct,Costco,4479,17.0,0.0,10.0,0.55,76143.0,28889.55
+2026-10-26,Iced Oatmeal Cookie Bar 12ct,Costco,4946,17.0,0.0,10.0,0.55,84082.0,31901.7
+2026-11-02,Iced Oatmeal Cookie Bar 12ct,Costco,4704,17.0,0.0,10.0,0.55,79968.0,30340.8
+2026-11-09,Iced Oatmeal Cookie Bar 12ct,Costco,5342,17.0,0.0,10.0,0.55,90814.0,34455.9
+2026-09-21,Iced Oatmeal Cookie Bar 12ct,Walmart,3438,17.4,0.0,10.0,0.85,59821.2,22518.9
+2026-09-28,Iced Oatmeal Cookie Bar 12ct,Walmart,3364,17.4,0.0,10.0,0.85,58533.6,22034.2
+2026-10-05,Iced Oatmeal Cookie Bar 12ct,Walmart,3531,17.4,0.0,10.0,0.85,61439.4,23128.05
+2026-10-12,Iced Oatmeal Cookie Bar 12ct,Walmart,3190,17.4,0.0,10.0,0.85,55506.0,20894.5
+2026-10-19,Iced Oatmeal Cookie Bar 12ct,Walmart,3442,17.4,0.0,10.0,0.85,59890.8,22545.1
+2026-10-26,Iced Oatmeal Cookie Bar 12ct,Walmart,3843,17.4,0.0,10.0,0.85,66868.2,25171.65
+2026-11-02,Iced Oatmeal Cookie Bar 12ct,Walmart,3341,17.4,0.0,10.0,0.85,58133.4,21883.55
+2026-11-09,Iced Oatmeal Cookie Bar 12ct,Walmart,4096,17.4,0.0,10.0,0.85,71270.4,26828.8
+2026-09-21,Iced Oatmeal Cookie Bar 12ct,Vitamin Shoppe,750,19.5,0.0,10.0,1.1,14625.0,6300.0
+2026-09-28,Iced Oatmeal Cookie Bar 12ct,Vitamin Shoppe,893,19.5,0.0,10.0,1.1,17413.5,7501.2
+2026-10-05,Iced Oatmeal Cookie Bar 12ct,Vitamin Shoppe,827,19.5,0.0,10.0,1.1,16126.5,6946.8
+2026-10-12,Iced Oatmeal Cookie Bar 12ct,Vitamin Shoppe,929,19.5,0.0,10.0,1.1,18115.5,7803.6
+2026-10-19,Iced Oatmeal Cookie Bar 12ct,Vitamin Shoppe,912,19.5,0.0,10.0,1.1,17784.0,7660.8
+2026-10-26,Iced Oatmeal Cookie Bar 12ct,Vitamin Shoppe,836,19.5,0.0,10.0,1.1,16302.0,7022.4
+2026-11-02,Iced Oatmeal Cookie Bar 12ct,Vitamin Shoppe,1008,19.5,0.0,10.0,1.1,19656.0,8467.2
+2026-11-09,Iced Oatmeal Cookie Bar 12ct,Vitamin Shoppe,1451,19.5,0.0,10.0,1.1,28294.5,12188.4
+2026-09-21,Protein Water Variety 12pk,Target,1205,16.56,0.0,8.2,0.9,19954.8,8989.3
+2026-09-28,Protein Water Variety 12pk,Target,1238,16.56,0.0,8.2,0.9,20501.28,9235.48
+2026-10-05,Protein Water Variety 12pk,Target,1200,16.56,0.0,8.2,0.9,19872.0,8952.0
+2026-10-12,Protein Water Variety 12pk,Target,1385,16.56,0.0,8.2,0.9,22935.6,10332.1
+2026-10-19,Protein Water Variety 12pk,Target,1280,16.56,0.0,8.2,0.9,21196.8,9548.8
+2026-10-26,Protein Water Variety 12pk,Target,1344,16.56,0.0,8.2,0.9,22256.64,10026.24
+2026-11-02,Protein Water Variety 12pk,Target,1307,16.56,0.0,8.2,0.9,21643.92,9750.22
+2026-11-09,Protein Water Variety 12pk,Target,1345,16.56,0.0,8.2,0.9,22273.2,10033.7
+2026-09-21,Protein Water Variety 12pk,Costco,4046,15.64,0.0,8.2,0.55,63279.44,27876.94
+2026-09-28,Protein Water Variety 12pk,Costco,4806,15.64,0.0,8.2,0.55,75165.84,33113.34
+2026-10-05,Protein Water Variety 12pk,Costco,4515,15.64,0.0,8.2,0.55,70614.6,31108.35
+2026-10-12,Protein Water Variety 12pk,Costco,4914,15.64,0.0,8.2,0.55,76854.96,33857.46
+2026-10-19,Protein Water Variety 12pk,Costco,4736,15.64,0.0,8.2,0.55,74071.04,32631.04
+2026-10-26,Protein Water Variety 12pk,Costco,4619,15.64,0.0,8.2,0.55,72241.16,31824.91
+2026-11-02,Protein Water Variety 12pk,Costco,4811,15.64,1.2,8.2,0.55,69470.84,27374.59
+2026-11-09,Protein Water Variety 12pk,Costco,4827,15.64,1.2,8.2,0.55,69701.88,27465.63
+2026-09-21,Protein Water Variety 12pk,Walmart,1264,16.01,0.0,8.2,0.85,20236.64,8797.44
+2026-09-28,Protein Water Variety 12pk,Walmart,1159,16.01,0.0,8.2,0.85,18555.59,8066.64
+2026-10-05,Protein Water Variety 12pk,Walmart,1187,16.01,0.0,8.2,0.85,19003.87,8261.52
+2026-10-12,Protein Water Variety 12pk,Walmart,1130,16.01,0.0,8.2,0.85,18091.3,7864.8
+2026-10-19,Protein Water Variety 12pk,Walmart,1195,16.01,0.0,8.2,0.85,19131.95,8317.2
+2026-10-26,Protein Water Variety 12pk,Walmart,1406,16.01,0.0,8.2,0.85,22510.06,9785.76
+2026-11-02,Protein Water Variety 12pk,Walmart,1250,16.01,0.0,8.2,0.85,20012.5,8700.0
+2026-11-09,Protein Water Variety 12pk,Walmart,1241,16.01,0.0,8.2,0.85,19868.41,8637.36
+2026-09-21,Protein Water Variety 12pk,Vitamin Shoppe,2549,17.94,0.0,8.2,1.1,45729.06,22023.36
+2026-09-28,Protein Water Variety 12pk,Vitamin Shoppe,2764,17.94,0.0,8.2,1.1,49586.16,23880.96
+2026-10-05,Protein Water Variety 12pk,Vitamin Shoppe,2372,17.94,0.0,8.2,1.1,42553.68,20494.08
+2026-10-12,Protein Water Variety 12pk,Vitamin Shoppe,2615,17.94,0.0,8.2,1.1,46913.1,22593.6
+2026-10-19,Protein Water Variety 12pk,Vitamin Shoppe,2596,17.94,0.0,8.2,1.1,46572.24,22429.44
+2026-10-26,Protein Water Variety 12pk,Vitamin Shoppe,2458,17.94,0.0,8.2,1.1,44096.52,21237.12
+2026-11-02,Protein Water Variety 12pk,Vitamin Shoppe,2922,17.94,0.0,8.2,1.1,52420.68,25246.08
+2026-11-09,Protein Water Variety 12pk,Vitamin Shoppe,2844,17.94,0.0,8.2,1.1,51021.36,24572.16
+2026-09-21,Hydration Drink 12pk,Target,1825,16.56,0.0,7.6,0.9,30222.0,14709.5
+2026-09-28,Hydration Drink 12pk,Target,2003,16.56,0.0,7.6,0.9,33169.68,16144.18
+2026-10-05,Hydration Drink 12pk,Target,1924,16.56,0.0,7.6,0.9,31861.44,15507.44
+2026-10-12,Hydration Drink 12pk,Target,2009,16.56,0.0,7.6,0.9,33269.04,16192.54
+2026-10-19,Hydration Drink 12pk,Target,1927,16.56,0.0,7.6,0.9,31911.12,15531.62
+2026-10-26,Hydration Drink 12pk,Target,1949,16.56,0.0,7.6,0.9,32275.44,15708.94
+2026-11-02,Hydration Drink 12pk,Target,2313,16.56,0.0,7.6,0.9,38303.28,18642.78
+2026-11-09,Hydration Drink 12pk,Target,2113,16.56,0.0,7.6,0.9,34991.28,17030.78
+2026-09-21,Hydration Drink 12pk,Costco,5118,15.64,0.0,7.6,0.55,80045.52,38333.82
+2026-09-28,Hydration Drink 12pk,Costco,5120,15.64,0.0,7.6,0.55,80076.8,38348.8
+2026-10-05,Hydration Drink 12pk,Costco,5092,15.64,0.0,7.6,0.55,79638.88,38139.08
+2026-10-12,Hydration Drink 12pk,Costco,5169,15.64,0.0,7.6,0.55,80843.16,38715.81
+2026-10-19,Hydration Drink 12pk,Costco,5637,15.64,0.0,7.6,0.55,88162.68,42221.13
+2026-10-26,Hydration Drink 12pk,Costco,5432,15.64,0.0,7.6,0.55,84956.48,40685.68
+2026-11-02,Hydration Drink 12pk,Costco,5582,15.64,0.0,7.6,0.55,87302.48,41809.18
+2026-11-09,Hydration Drink 12pk,Costco,5741,15.64,0.0,7.6,0.55,89789.24,43000.09
+2026-09-21,Hydration Drink 12pk,Walmart,2818,16.01,0.6,7.6,0.85,43425.38,19613.28
+2026-09-28,Hydration Drink 12pk,Walmart,2825,16.01,0.6,7.6,0.85,43533.25,19662.0
+2026-10-05,Hydration Drink 12pk,Walmart,2721,16.01,0.6,7.6,0.85,41930.61,18938.16
+2026-10-12,Hydration Drink 12pk,Walmart,2632,16.01,0.6,7.6,0.85,40559.12,18318.72
+2026-10-19,Hydration Drink 12pk,Walmart,3091,16.01,0.6,7.6,0.85,47632.31,21513.36
+2026-10-26,Hydration Drink 12pk,Walmart,3151,16.01,0.6,7.6,0.85,48556.91,21930.96
+2026-11-02,Hydration Drink 12pk,Walmart,3007,16.01,0.6,7.6,0.85,46337.87,20928.72
+2026-11-09,Hydration Drink 12pk,Walmart,3187,16.01,0.6,7.6,0.85,49111.67,22181.52
+2026-09-21,Hydration Drink 12pk,Vitamin Shoppe,1539,17.94,0.0,7.6,1.1,27609.66,14220.36
+2026-09-28,Hydration Drink 12pk,Vitamin Shoppe,1575,17.94,0.0,7.6,1.1,28255.5,14553.0
+2026-10-05,Hydration Drink 12pk,Vitamin Shoppe,1614,17.94,0.0,7.6,1.1,28955.16,14913.36
+2026-10-12,Hydration Drink 12pk,Vitamin Shoppe,1516,17.94,0.0,7.6,1.1,27197.04,14007.84
+2026-10-19,Hydration Drink 12pk,Vitamin Shoppe,1733,17.94,0.0,7.6,1.1,31090.02,16012.92
+2026-10-26,Hydration Drink 12pk,Vitamin Shoppe,1497,17.94,0.0,7.6,1.1,26856.18,13832.28
+2026-11-02,Hydration Drink 12pk,Vitamin Shoppe,1732,17.94,0.0,7.6,1.1,31072.08,16003.68
+2026-11-09,Hydration Drink 12pk,Vitamin Shoppe,1726,17.94,0.0,7.6,1.1,30964.44,15948.24

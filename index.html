@@ -1,0 +1,344 @@
+<title>Weekly Margin Review</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one column review pack, summary first (KPIs, AI note), then retailer, SKU grid, trend, exceptions, how it works */
+:root{
+  --bg:#f6f7f5; --surface:#ffffff; --fg:#17201b; --muted:#5d6a63; --line:#dfe4e0;
+  --accent:#1f6f4a; --accent-soft:#e3f1e9;
+  --bad:#b4372a; --bad-soft:#fbe7e4; --warn:#a46a00; --warn-soft:#fbf1dc; --good:#1f6f4a;
+  --display:"Archivo",system-ui,sans-serif; --body:"Inter",system-ui,sans-serif; --mono:"JetBrains Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0f1512; --surface:#161e1a; --fg:#e7ede9; --muted:#9aa8a0; --line:#2a3530;
+  --accent:#5cc28f; --accent-soft:#183327; --bad:#f08a7c; --bad-soft:#3a1c18; --warn:#e6b24f; --warn-soft:#352a12; --good:#5cc28f; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f1512; --surface:#161e1a; --fg:#e7ede9; --muted:#9aa8a0; --line:#2a3530;
+  --accent:#5cc28f; --accent-soft:#183327; --bad:#f08a7c; --bad-soft:#3a1c18; --warn:#e6b24f; --warn-soft:#352a12; --good:#5cc28f; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.5}
+.wrap{max-width:1080px;margin:0 auto;padding-block:28px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:28px}
+.banner{font-size:13px;color:var(--warn);background:var(--warn-soft);border-radius:8px;padding:8px 12px}
+header{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-end;justify-content:space-between}
+.eyebrow{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(26px,4vw,36px);margin:4px 0 0;line-height:1.1;text-wrap:balance}
+h2{font-family:var(--display);font-weight:700;font-size:19px;margin:0;text-wrap:balance}
+.sub{color:var(--muted);margin:4px 0 0}
+.controls{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end}
+.controls label{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--muted);font-weight:600}
+select,input[type=number]{font:inherit;font-size:14px;padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--fg)}
+input[type=number]{width:84px;font-family:var(--mono)}
+select:focus-visible,input:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:2px}
+.kpi .v{font-family:var(--display);font-weight:700;font-size:26px;font-variant-numeric:tabular-nums}
+.kpi .d{font-size:13px;font-variant-numeric:tabular-nums}
+.up{color:var(--good)} .down{color:var(--bad)}
+.ai{background:var(--accent-soft);border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;gap:10px}
+.ai-head{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}
+.pill{font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:3px 8px;border-radius:999px;background:var(--surface);color:var(--accent)}
+.ai ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px;max-width:80ch}
+.ai .foot{font-size:12px;color:var(--muted)}
+section{display:flex;flex-direction:column;gap:12px;min-width:0}
+.sechead{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.note{font-size:13px;color:var(--muted)}
+.tbl{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:12px}
+table{border-collapse:collapse;width:100%;font-size:14px;font-variant-numeric:tabular-nums}
+th,td{padding:9px 12px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}
+th{font-size:12px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+th:first-child,td:first-child{text-align:left}
+tr:last-child td{border-bottom:none}
+td.cell{font-family:var(--mono);font-size:13px}
+td.below{background:var(--bad-soft);color:var(--bad);font-weight:500}
+td.near{background:var(--warn-soft);color:var(--warn)}
+.chip{display:inline-block;font-size:11px;font-weight:600;padding:2px 7px;border-radius:999px}
+.chip.bad{background:var(--bad-soft);color:var(--bad)} .chip.ok{background:var(--accent-soft);color:var(--accent)} .chip.warn{background:var(--warn-soft);color:var(--warn)}
+.chart{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px;overflow-x:auto}
+.chart svg{display:block;width:100%;min-width:520px;height:auto}
+.legend{display:flex;gap:16px;font-size:12px;color:var(--muted);flex-wrap:wrap}
+.legend i{display:inline-block;width:12px;height:3px;border-radius:2px;margin-right:6px;vertical-align:middle}
+.exc{display:flex;flex-direction:column;gap:10px}
+.ex{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--bad);border-radius:10px;padding:12px 14px;display:grid;grid-template-columns:1fr auto;gap:4px 16px}
+.ex.warnx{border-left-color:var(--warn)}
+.ex b{font-weight:600}
+.ex .gm{font-family:var(--mono);font-size:14px;text-align:right}
+.ex .why,.ex .act{grid-column:1/-1;font-size:14px;color:var(--muted)}
+.ex .act{color:var(--fg)}
+.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.step{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:4px;font-size:13px}
+.step b{font-family:var(--display);font-size:14px}
+.step .n{font-family:var(--mono);font-size:11px;color:var(--accent)}
+ .mgmt{background:var(--surface);border:1px solid var(--line);border-top:4px solid var(--fg);border-radius:12px;padding:16px 20px;display:flex;flex-direction:column;gap:12px}
+.mgmt ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.mgmt li{display:flex;flex-direction:column;gap:4px;min-width:0}
+.mgmt .q{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.mgmt .a{font-family:var(--display);font-weight:700;font-size:17px;line-height:1.25}
+.mgmt .t{font-size:14px;color:var(--muted)}
+.hint{font-weight:400;font-size:11px;color:var(--muted)}
+.wc{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.dict{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:6px 16px}
+.dict dl{margin:0;display:grid;grid-template-columns:minmax(140px,220px) 1fr}
+.dict dt,.dict dd{margin:0;padding:9px 0;border-bottom:1px solid var(--line);font-size:14px}
+.dict dt{font-weight:600;padding-right:16px}
+.dict dd{color:var(--muted)}
+.dict dl>*:nth-last-child(-n+2){border-bottom:none}
+td.neg{color:var(--bad)} td.pos{color:var(--good)}
+#promoTbl th,#promoTbl td{padding:9px 8px}
+#promoTbl th{white-space:normal;vertical-align:bottom}
+footer{font-size:12px;color:var(--muted);border-top:1px solid var(--line);padding-top:14px}
+@media (max-width:760px){.kpis,.wc{grid-template-columns:repeat(2,1fr)}.mgmt ol{grid-template-columns:1fr}.dict dl{grid-template-columns:1fr}.dict dt{border-bottom:none;padding-bottom:0}.flow{grid-template-columns:1fr 1fr}}
+@media (max-width:420px){.flow{grid-template-columns:1fr}}
+</style>
+<div class="wrap">
+  <div class="banner">Concept demo built on <b>sample data</b>. Products and retailers are illustrative. These are not any company's actual figures.</div>
+
+  <header>
+    <div>
+      <div class="eyebrow">CPG Commercial Finance · Weekly Sales Review</div>
+      <h1>Weekly Margin Review</h1>
+      <p class="sub" id="weekLabel"></p>
+    </div>
+    <div class="controls">
+      <label for="week">Week starting<select id="week"></select></label>
+      <label for="floor">Margin floor % <span class="hint">illustrative</span><input id="floor" type="number" min="20" max="60" step="1" value="35"></label>
+    </div>
+  </header>
+
+  <section class="mgmt" aria-live="polite">
+    <h2>Management Attention Required</h2>
+    <ol id="mgmt"></ol>
+  </section>
+
+  <div class="kpis" id="kpis"></div>
+
+  <div class="ai" aria-live="polite">
+    <div class="ai-head"><h2>This week in four lines</h2><span class="pill">AI drafted · analyst reviews</span></div>
+    <ul id="aiList"></ul>
+    <div class="foot">In this demo the commentary is generated from rules on the same data. In production, Claude would draft it from the reviewed numbers and an analyst would edit and approve it before it goes out.</div>
+  </div>
+
+  <section>
+    <div class="sechead"><h2>Exceptions to review</h2><span class="note">Only items below the floor or within 2 points of it</span></div>
+    <div class="exc" id="exc"></div>
+  </section>
+
+  <section>
+    <div class="sechead"><h2>Promotion ROI</h2><span class="note">Promo week versus the average of up to 4 prior non promo weeks</span></div>
+    <div class="tbl"><table id="promoTbl"></table></div>
+    <p class="note" id="promoNote"></p>
+  </section>
+
+  <section>
+    <div class="sechead"><h2>By retailer</h2><span class="note">Gross margin = (net sales − COGS − freight) ÷ net sales</span></div>
+    <div class="tbl"><table id="retTbl"></table></div>
+  </section>
+
+  <section>
+    <div class="sechead"><h2>Gross margin by SKU and retailer</h2><span class="note"><span class="chip bad">below floor</span> <span class="chip warn">within 2 pts</span></span></div>
+    <div class="tbl"><table id="grid"></table></div>
+  </section>
+
+  <section>
+    <div class="sechead"><h2>Eight week trend</h2>
+      <div class="legend"><span><i style="background:var(--accent)"></i>Net sales, left axis</span><span><i style="background:var(--warn)"></i>Gross margin %, right axis</span><span><i style="background:var(--bad);height:1px"></i>Margin floor, right axis</span></div></div>
+    <div class="chart" id="chart"></div>
+  </section>
+
+  <section>
+    <div class="sechead"><h2>Cash and working capital</h2><span class="note">Month end snapshot · October vs September · sample balances</span></div>
+    <div class="wc" id="wc"></div>
+    <p class="note" id="wcNote"></p>
+  </section>
+
+  <section>
+    <h2>Assumptions and data dictionary</h2>
+    <div class="dict"><dl>
+      <dt>Margin floor (35%)</dt><dd>Illustrative assumption, not an actual company policy. Chosen as a level that leaves room to fund one promotion and absorb freight swings while still covering selling and overhead costs. Change it in the control at the top to test other floors.</dd>
+      <dt>Units</dt><dd>All units are cases. Bars are 12 count boxes, drinks are 12 packs.</dd>
+      <dt>Gross sales</dt><dd>Cases × price per case to the retailer.</dd>
+      <dt>Trade spend</dt><dd>Promotional and allowance payments to the retailer, per case sold.</dd>
+      <dt>Net sales</dt><dd>Gross sales − trade spend.</dd>
+      <dt>COGS</dt><dd>Cost to make one case, including ingredients, packaging and co packing.</dd>
+      <dt>Freight</dt><dd>Cost to deliver one case to the retailer's warehouse. Varies by retailer.</dd>
+      <dt>Gross margin</dt><dd>(Net sales − COGS − freight) ÷ net sales.</dd>
+      <dt>Baseline</dt><dd>Average weekly cases and per case economics over up to 4 prior weeks without the promotion.</dd>
+      <dt>Incremental gross profit</dt><dd>Promo week gross profit (after trade) − baseline gross profit.</dd>
+      <dt>Promotion ROI</dt><dd>Incremental gross profit ÷ trade spend. Below 0% means the promotion lost money versus not running it.</dd>
+      <dt>Breakeven lift</dt><dd>Sales lift over baseline the promotion needs for gross profit to match a normal week.</dd>
+      <dt>DSO, DIO, DPO</dt><dd>Days sales outstanding (AR ÷ net sales × 365), days inventory outstanding (inventory ÷ COGS × 365), days payables outstanding (AP ÷ COGS × 365), using trailing 12 month totals.</dd>
+      <dt>Cash conversion cycle</dt><dd>DSO + DIO − DPO. The number of days cash is tied up between paying suppliers and collecting from retailers.</dd>
+      <dt>Data</dt><dd>All figures are sample data for this concept. Products and retailers are illustrative.</dd>
+    </dl></div>
+  </section>
+
+  <section>
+    <h2>How this would run in production</h2>
+    <div class="flow">
+      <div class="step"><span class="n">Step 1</span><b>Pull</b>NetSuite saved search for invoices, trade and COGS loads into the finance data platform each Monday.</div>
+      <div class="step"><span class="n">Step 2</span><b>Check</b>Data quality tests: totals tie to NetSuite, no missing SKUs, no duplicate invoices.</div>
+      <div class="step"><span class="n">Step 3</span><b>Flag</b>Every retailer and SKU is tested against the margin floor. Only exceptions surface.</div>
+      <div class="step"><span class="n">Step 4</span><b>Draft</b>Claude writes first pass commentary and suggests the driver behind each exception.</div>
+      <div class="step"><span class="n">Step 5</span><b>Review</b>Analyst edits, confirms drivers with Sales or Ops, and sends the pack.</div>
+    </div>
+  </section>
+
+  <footer>Concept by Kriti Singh. Sample data only. Units are cases. See the assumptions section for definitions.</footer>
+</div>
+<script>
+const RAW=[["2026-09-21","Protein Bar Choc PB 12ct","Target",3411,18.0,0.0,9.9,0.9],["2026-09-28","Protein Bar Choc PB 12ct","Target",3361,18.0,0.0,9.9,0.9],["2026-10-05","Protein Bar Choc PB 12ct","Target",3298,18.0,0.0,9.9,0.9],["2026-10-12","Protein Bar Choc PB 12ct","Target",3455,18.0,0.0,9.9,0.9],["2026-10-19","Protein Bar Choc PB 12ct","Target",3403,18.0,0.0,9.9,0.9],["2026-10-26","Protein Bar Choc PB 12ct","Target",3699,18.0,0.0,9.9,0.9],["2026-11-02","Protein Bar Choc PB 12ct","Target",4054,18.0,0.0,9.9,0.9],["2026-11-09","Protein Bar Choc PB 12ct","Target",5745,18.0,3.0,9.9,0.9],["2026-09-21","Protein Bar Choc PB 12ct","Costco",4788,17.0,0.0,9.9,0.55],["2026-09-28","Protein Bar Choc PB 12ct","Costco",5222,17.0,0.0,9.9,0.55],["2026-10-05","Protein Bar Choc PB 12ct","Costco",5283,17.0,0.0,9.9,0.55],["2026-10-12","Protein Bar Choc PB 12ct","Costco",5305,17.0,0.0,9.9,0.55],["2026-10-19","Protein Bar Choc PB 12ct","Costco",5072,17.0,0.0,9.9,0.55],["2026-10-26","Protein Bar Choc PB 12ct","Costco",5461,17.0,0.0,9.9,0.55],["2026-11-02","Protein Bar Choc PB 12ct","Costco",5803,17.0,0.0,9.9,0.55],["2026-11-09","Protein Bar Choc PB 12ct","Costco",5213,17.0,0.0,9.9,0.55],["2026-09-21","Protein Bar Choc PB 12ct","Walmart",2640,17.4,0.0,9.9,0.85],["2026-09-28","Protein Bar Choc PB 12ct","Walmart",2804,17.4,0.0,9.9,0.85],["2026-10-05","Protein Bar Choc PB 12ct","Walmart",2756,17.4,0.0,9.9,0.85],["2026-10-12","Protein Bar Choc PB 12ct","Walmart",3114,17.4,0.0,9.9,0.85],["2026-10-19","Protein Bar Choc PB 12ct","Walmart",2973,17.4,0.0,9.9,0.85],["2026-10-26","Protein Bar Choc PB 12ct","Walmart",3331,17.4,0.0,9.9,0.85],["2026-11-02","Protein Bar Choc PB 12ct","Walmart",3368,17.4,0.0,9.9,0.85],["2026-11-09","Protein Bar Choc PB 12ct","Walmart",3359,17.4,0.0,9.9,0.85],["2026-09-21","Protein Bar Choc PB 12ct","Vitamin Shoppe",2496,19.5,0.0,9.9,1.1],["2026-09-28","Protein Bar Choc PB 12ct","Vitamin Shoppe",2901,19.5,0.0,9.9,1.1],["2026-10-05","Protein Bar Choc PB 12ct","Vitamin Shoppe",3048,19.5,0.0,9.9,1.1],["2026-10-12","Protein Bar Choc PB 12ct","Vitamin Shoppe",3137,19.5,0.0,9.9,1.1],["2026-10-19","Protein Bar Choc PB 12ct","Vitamin Shoppe",2883,19.5,0.0,9.9,1.1],["2026-10-26","Protein Bar Choc PB 12ct","Vitamin Shoppe",3141,19.5,0.0,9.9,1.1],["2026-11-02","Protein Bar Choc PB 12ct","Vitamin Shoppe",3099,19.5,0.0,9.9,1.1],["2026-11-09","Protein Bar Choc PB 12ct","Vitamin Shoppe",3188,19.5,0.0,9.9,1.1],["2026-09-21","Protein Bar Dark Choc Sea Salt 12ct","Target",3025,18.0,0.0,10.1,0.9],["2026-09-28","Protein Bar Dark Choc Sea Salt 12ct","Target",3237,18.0,0.0,10.1,0.9],["2026-10-05","Protein Bar Dark Choc Sea Salt 12ct","Target",3482,18.0,0.0,10.1,0.9],["2026-10-12","Protein Bar Dark Choc Sea Salt 12ct","Target",3252,18.0,0.0,10.1,0.9],["2026-10-19","Protein Bar Dark Choc Sea Salt 12ct","Target",3411,18.0,0.0,10.1,0.9],["2026-10-26","Protein Bar Dark Choc Sea Salt 12ct","Target",3521,18.0,0.0,10.1,0.9],["2026-11-02","Protein Bar Dark Choc Sea Salt 12ct","Target",3575,18.0,0.0,10.1,0.9],["2026-11-09","Protein Bar Dark Choc Sea Salt 12ct","Target",3358,18.0,0.0,10.71,0.9],["2026-09-21","Protein Bar Dark Choc Sea Salt 12ct","Costco",2694,17.0,0.0,10.1,0.55],["2026-09-28","Protein Bar Dark Choc Sea Salt 12ct","Costco",2958,17.0,0.0,10.1,0.55],["2026-10-05","Protein Bar Dark Choc Sea Salt 12ct","Costco",2530,17.0,0.0,10.1,0.55],["2026-10-12","Protein Bar Dark Choc Sea Salt 12ct","Costco",2989,17.0,0.0,10.1,0.55],["2026-10-19","Protein Bar Dark Choc Sea Salt 12ct","Costco",2917,17.0,0.0,10.1,0.55],["2026-10-26","Protein Bar Dark Choc Sea Salt 12ct","Costco",2836,17.0,0.0,10.1,0.55],["2026-11-02","Protein Bar Dark Choc Sea Salt 12ct","Costco",3364,17.0,0.0,10.1,0.55],["2026-11-09","Protein Bar Dark Choc Sea Salt 12ct","Costco",3197,17.0,0.0,10.71,0.55],["2026-09-21","Protein Bar Dark Choc Sea Salt 12ct","Walmart",1096,17.4,0.0,10.1,0.85],["2026-09-28","Protein Bar Dark Choc Sea Salt 12ct","Walmart",1152,17.4,0.0,10.1,0.85],["2026-10-05","Protein Bar Dark Choc Sea Salt 12ct","Walmart",1122,17.4,0.0,10.1,0.85],["2026-10-12","Protein Bar Dark Choc Sea Salt 12ct","Walmart",1204,17.4,0.0,10.1,0.85],["2026-10-19","Protein Bar Dark Choc Sea Salt 12ct","Walmart",1174,17.4,0.0,10.1,0.85],["2026-10-26","Protein Bar Dark Choc Sea Salt 12ct","Walmart",1249,17.4,0.0,10.1,0.85],["2026-11-02","Protein Bar Dark Choc Sea Salt 12ct","Walmart",1328,17.4,0.0,10.1,0.85],["2026-11-09","Protein Bar Dark Choc Sea Salt 12ct","Walmart",1194,17.4,0.0,10.71,0.85],["2026-09-21","Protein Bar Dark Choc Sea Salt 12ct","Vitamin Shoppe",970,19.5,0.0,10.1,1.1],["2026-09-28","Protein Bar Dark Choc Sea Salt 12ct","Vitamin Shoppe",950,19.5,0.0,10.1,1.1],["2026-10-05","Protein Bar Dark Choc Sea Salt 12ct","Vitamin Shoppe",1004,19.5,0.0,10.1,1.1],["2026-10-12","Protein Bar Dark Choc Sea Salt 12ct","Vitamin Shoppe",944,19.5,0.0,10.1,1.1],["2026-10-19","Protein Bar Dark Choc Sea Salt 12ct","Vitamin Shoppe",999,19.5,0.0,10.1,1.1],["2026-10-26","Protein Bar Dark Choc Sea Salt 12ct","Vitamin Shoppe",1042,19.5,0.0,10.1,1.1],["2026-11-02","Protein Bar Dark Choc Sea Salt 12ct","Vitamin Shoppe",1132,19.5,0.0,10.1,1.1],["2026-11-09","Protein Bar Dark Choc Sea Salt 12ct","Vitamin Shoppe",1168,19.5,0.0,10.71,1.1],["2026-09-21","High Protein Bar Milk Choc 12ct","Target",3207,20.16,0.0,11.3,0.9],["2026-09-28","High Protein Bar Milk Choc 12ct","Target",3568,20.16,0.0,11.3,0.9],["2026-10-05","High Protein Bar Milk Choc 12ct","Target",3083,20.16,0.0,11.3,0.9],["2026-10-12","High Protein Bar Milk Choc 12ct","Target",3470,20.16,0.0,11.3,0.9],["2026-10-19","High Protein Bar Milk Choc 12ct","Target",3616,20.16,0.0,11.3,0.9],["2026-10-26","High Protein Bar Milk Choc 12ct","Target",3984,20.16,0.0,11.3,0.9],["2026-11-02","High Protein Bar Milk Choc 12ct","Target",3928,20.16,0.0,11.3,0.9],["2026-11-09","High Protein Bar Milk Choc 12ct","Target",3764,20.16,0.0,11.3,0.9],["2026-09-21","High Protein Bar Milk Choc 12ct","Costco",2698,19.04,0.0,11.3,0.55],["2026-09-28","High Protein Bar Milk Choc 12ct","Costco",2772,19.04,0.0,11.3,0.55],["2026-10-05","High Protein Bar Milk Choc 12ct","Costco",3132,19.04,0.0,11.3,0.55],["2026-10-12","High Protein Bar Milk Choc 12ct","Costco",2850,19.04,0.0,11.3,0.55],["2026-10-19","High Protein Bar Milk Choc 12ct","Costco",2926,19.04,0.0,11.3,0.55],["2026-10-26","High Protein Bar Milk Choc 12ct","Costco",3100,19.04,0.0,11.3,0.55],["2026-11-02","High Protein Bar Milk Choc 12ct","Costco",3068,19.04,0.0,11.3,0.55],["2026-11-09","High Protein Bar Milk Choc 12ct","Costco",3109,19.04,0.0,11.3,0.55],["2026-09-21","High Protein Bar Milk Choc 12ct","Walmart",2373,19.49,0.0,11.3,0.85],["2026-09-28","High Protein Bar Milk Choc 12ct","Walmart",2358,19.49,0.0,11.3,0.85],["2026-10-05","High Protein Bar Milk Choc 12ct","Walmart",2642,19.49,0.0,11.3,0.85],["2026-10-12","High Protein Bar Milk Choc 12ct","Walmart",2616,19.49,0.0,11.3,0.85],["2026-10-19","High Protein Bar Milk Choc 12ct","Walmart",2561,19.49,0.0,11.3,0.85],["2026-10-26","High Protein Bar Milk Choc 12ct","Walmart",2717,19.49,0.0,11.3,0.85],["2026-11-02","High Protein Bar Milk Choc 12ct","Walmart",2605,19.49,0.0,11.3,0.85],["2026-11-09","High Protein Bar Milk Choc 12ct","Walmart",2878,19.49,0.0,11.3,0.85],["2026-09-21","High Protein Bar Milk Choc 12ct","Vitamin Shoppe",2337,21.84,0.0,11.3,1.1],["2026-09-28","High Protein Bar Milk Choc 12ct","Vitamin Shoppe",2468,21.84,0.0,11.3,1.1],["2026-10-05","High Protein Bar Milk Choc 12ct","Vitamin Shoppe",2243,21.84,0.0,11.3,1.1],["2026-10-12","High Protein Bar Milk Choc 12ct","Vitamin Shoppe",2529,21.84,0.0,11.3,1.1],["2026-10-19","High Protein Bar Milk Choc 12ct","Vitamin Shoppe",2269,21.84,0.0,11.3,1.1],["2026-10-26","High Protein Bar Milk Choc 12ct","Vitamin Shoppe",2257,21.84,0.0,11.3,1.1],["2026-11-02","High Protein Bar Milk Choc 12ct","Vitamin Shoppe",2570,21.84,0.0,11.3,1.1],["2026-11-09","High Protein Bar Milk Choc 12ct","Vitamin Shoppe",2521,21.84,0.0,11.3,1.1],["2026-09-21","Iced Oatmeal Cookie Bar 12ct","Target",1149,18.0,0.0,10.0,0.9],["2026-09-28","Iced Oatmeal Cookie Bar 12ct","Target",981,18.0,0.0,10.0,0.9],["2026-10-05","Iced Oatmeal Cookie Bar 12ct","Target",1014,18.0,0.0,10.0,0.9],["2026-10-12","Iced Oatmeal Cookie Bar 12ct","Target",1087,18.0,0.0,10.0,0.9],["2026-10-19","Iced Oatmeal Cookie Bar 12ct","Target",1126,18.0,0.0,10.0,0.9],["2026-10-26","Iced Oatmeal Cookie Bar 12ct","Target",1102,18.0,0.0,10.0,0.9],["2026-11-02","Iced Oatmeal Cookie Bar 12ct","Target",1120,18.0,0.0,10.0,0.9],["2026-11-09","Iced Oatmeal Cookie Bar 12ct","Target",1203,18.0,0.0,10.0,0.9],["2026-09-21","Iced Oatmeal Cookie Bar 12ct","Costco",4566,17.0,0.0,10.0,0.55],["2026-09-28","Iced Oatmeal Cookie Bar 12ct","Costco",4236,17.0,0.0,10.0,0.55],["2026-10-05","Iced Oatmeal Cookie Bar 12ct","Costco",4583,17.0,0.0,10.0,0.55],["2026-10-12","Iced Oatmeal Cookie Bar 12ct","Costco",4703,17.0,0.0,10.0,0.55],["2026-10-19","Iced Oatmeal Cookie Bar 12ct","Costco",4479,17.0,0.0,10.0,0.55],["2026-10-26","Iced Oatmeal Cookie Bar 12ct","Costco",4946,17.0,0.0,10.0,0.55],["2026-11-02","Iced Oatmeal Cookie Bar 12ct","Costco",4704,17.0,0.0,10.0,0.55],["2026-11-09","Iced Oatmeal Cookie Bar 12ct","Costco",5342,17.0,0.0,10.0,0.55],["2026-09-21","Iced Oatmeal Cookie Bar 12ct","Walmart",3438,17.4,0.0,10.0,0.85],["2026-09-28","Iced Oatmeal Cookie Bar 12ct","Walmart",3364,17.4,0.0,10.0,0.85],["2026-10-05","Iced Oatmeal Cookie Bar 12ct","Walmart",3531,17.4,0.0,10.0,0.85],["2026-10-12","Iced Oatmeal Cookie Bar 12ct","Walmart",3190,17.4,0.0,10.0,0.85],["2026-10-19","Iced Oatmeal Cookie Bar 12ct","Walmart",3442,17.4,0.0,10.0,0.85],["2026-10-26","Iced Oatmeal Cookie Bar 12ct","Walmart",3843,17.4,0.0,10.0,0.85],["2026-11-02","Iced Oatmeal Cookie Bar 12ct","Walmart",3341,17.4,0.0,10.0,0.85],["2026-11-09","Iced Oatmeal Cookie Bar 12ct","Walmart",4096,17.4,0.0,10.0,0.85],["2026-09-21","Iced Oatmeal Cookie Bar 12ct","Vitamin Shoppe",750,19.5,0.0,10.0,1.1],["2026-09-28","Iced Oatmeal Cookie Bar 12ct","Vitamin Shoppe",893,19.5,0.0,10.0,1.1],["2026-10-05","Iced Oatmeal Cookie Bar 12ct","Vitamin Shoppe",827,19.5,0.0,10.0,1.1],["2026-10-12","Iced Oatmeal Cookie Bar 12ct","Vitamin Shoppe",929,19.5,0.0,10.0,1.1],["2026-10-19","Iced Oatmeal Cookie Bar 12ct","Vitamin Shoppe",912,19.5,0.0,10.0,1.1],["2026-10-26","Iced Oatmeal Cookie Bar 12ct","Vitamin Shoppe",836,19.5,0.0,10.0,1.1],["2026-11-02","Iced Oatmeal Cookie Bar 12ct","Vitamin Shoppe",1008,19.5,0.0,10.0,1.1],["2026-11-09","Iced Oatmeal Cookie Bar 12ct","Vitamin Shoppe",1451,19.5,0.0,10.0,1.1],["2026-09-21","Protein Water Variety 12pk","Target",1205,16.56,0.0,8.2,0.9],["2026-09-28","Protein Water Variety 12pk","Target",1238,16.56,0.0,8.2,0.9],["2026-10-05","Protein Water Variety 12pk","Target",1200,16.56,0.0,8.2,0.9],["2026-10-12","Protein Water Variety 12pk","Target",1385,16.56,0.0,8.2,0.9],["2026-10-19","Protein Water Variety 12pk","Target",1280,16.56,0.0,8.2,0.9],["2026-10-26","Protein Water Variety 12pk","Target",1344,16.56,0.0,8.2,0.9],["2026-11-02","Protein Water Variety 12pk","Target",1307,16.56,0.0,8.2,0.9],["2026-11-09","Protein Water Variety 12pk","Target",1345,16.56,0.0,8.2,0.9],["2026-09-21","Protein Water Variety 12pk","Costco",4046,15.64,0.0,8.2,0.55],["2026-09-28","Protein Water Variety 12pk","Costco",4806,15.64,0.0,8.2,0.55],["2026-10-05","Protein Water Variety 12pk","Costco",4515,15.64,0.0,8.2,0.55],["2026-10-12","Protein Water Variety 12pk","Costco",4914,15.64,0.0,8.2,0.55],["2026-10-19","Protein Water Variety 12pk","Costco",4736,15.64,0.0,8.2,0.55],["2026-10-26","Protein Water Variety 12pk","Costco",4619,15.64,0.0,8.2,0.55],["2026-11-02","Protein Water Variety 12pk","Costco",4811,15.64,1.2,8.2,0.55],["2026-11-09","Protein Water Variety 12pk","Costco",4827,15.64,1.2,8.2,0.55],["2026-09-21","Protein Water Variety 12pk","Walmart",1264,16.01,0.0,8.2,0.85],["2026-09-28","Protein Water Variety 12pk","Walmart",1159,16.01,0.0,8.2,0.85],["2026-10-05","Protein Water Variety 12pk","Walmart",1187,16.01,0.0,8.2,0.85],["2026-10-12","Protein Water Variety 12pk","Walmart",1130,16.01,0.0,8.2,0.85],["2026-10-19","Protein Water Variety 12pk","Walmart",1195,16.01,0.0,8.2,0.85],["2026-10-26","Protein Water Variety 12pk","Walmart",1406,16.01,0.0,8.2,0.85],["2026-11-02","Protein Water Variety 12pk","Walmart",1250,16.01,0.0,8.2,0.85],["2026-11-09","Protein Water Variety 12pk","Walmart",1241,16.01,0.0,8.2,0.85],["2026-09-21","Protein Water Variety 12pk","Vitamin Shoppe",2549,17.94,0.0,8.2,1.1],["2026-09-28","Protein Water Variety 12pk","Vitamin Shoppe",2764,17.94,0.0,8.2,1.1],["2026-10-05","Protein Water Variety 12pk","Vitamin Shoppe",2372,17.94,0.0,8.2,1.1],["2026-10-12","Protein Water Variety 12pk","Vitamin Shoppe",2615,17.94,0.0,8.2,1.1],["2026-10-19","Protein Water Variety 12pk","Vitamin Shoppe",2596,17.94,0.0,8.2,1.1],["2026-10-26","Protein Water Variety 12pk","Vitamin Shoppe",2458,17.94,0.0,8.2,1.1],["2026-11-02","Protein Water Variety 12pk","Vitamin Shoppe",2922,17.94,0.0,8.2,1.1],["2026-11-09","Protein Water Variety 12pk","Vitamin Shoppe",2844,17.94,0.0,8.2,1.1],["2026-09-21","Hydration Drink 12pk","Target",1825,16.56,0.0,7.6,0.9],["2026-09-28","Hydration Drink 12pk","Target",2003,16.56,0.0,7.6,0.9],["2026-10-05","Hydration Drink 12pk","Target",1924,16.56,0.0,7.6,0.9],["2026-10-12","Hydration Drink 12pk","Target",2009,16.56,0.0,7.6,0.9],["2026-10-19","Hydration Drink 12pk","Target",1927,16.56,0.0,7.6,0.9],["2026-10-26","Hydration Drink 12pk","Target",1949,16.56,0.0,7.6,0.9],["2026-11-02","Hydration Drink 12pk","Target",2313,16.56,0.0,7.6,0.9],["2026-11-09","Hydration Drink 12pk","Target",2113,16.56,0.0,7.6,0.9],["2026-09-21","Hydration Drink 12pk","Costco",5118,15.64,0.0,7.6,0.55],["2026-09-28","Hydration Drink 12pk","Costco",5120,15.64,0.0,7.6,0.55],["2026-10-05","Hydration Drink 12pk","Costco",5092,15.64,0.0,7.6,0.55],["2026-10-12","Hydration Drink 12pk","Costco",5169,15.64,0.0,7.6,0.55],["2026-10-19","Hydration Drink 12pk","Costco",5637,15.64,0.0,7.6,0.55],["2026-10-26","Hydration Drink 12pk","Costco",5432,15.64,0.0,7.6,0.55],["2026-11-02","Hydration Drink 12pk","Costco",5582,15.64,0.0,7.6,0.55],["2026-11-09","Hydration Drink 12pk","Costco",5741,15.64,0.0,7.6,0.55],["2026-09-21","Hydration Drink 12pk","Walmart",2818,16.01,0.6,7.6,0.85],["2026-09-28","Hydration Drink 12pk","Walmart",2825,16.01,0.6,7.6,0.85],["2026-10-05","Hydration Drink 12pk","Walmart",2721,16.01,0.6,7.6,0.85],["2026-10-12","Hydration Drink 12pk","Walmart",2632,16.01,0.6,7.6,0.85],["2026-10-19","Hydration Drink 12pk","Walmart",3091,16.01,0.6,7.6,0.85],["2026-10-26","Hydration Drink 12pk","Walmart",3151,16.01,0.6,7.6,0.85],["2026-11-02","Hydration Drink 12pk","Walmart",3007,16.01,0.6,7.6,0.85],["2026-11-09","Hydration Drink 12pk","Walmart",3187,16.01,0.6,7.6,0.85],["2026-09-21","Hydration Drink 12pk","Vitamin Shoppe",1539,17.94,0.0,7.6,1.1],["2026-09-28","Hydration Drink 12pk","Vitamin Shoppe",1575,17.94,0.0,7.6,1.1],["2026-10-05","Hydration Drink 12pk","Vitamin Shoppe",1614,17.94,0.0,7.6,1.1],["2026-10-12","Hydration Drink 12pk","Vitamin Shoppe",1516,17.94,0.0,7.6,1.1],["2026-10-19","Hydration Drink 12pk","Vitamin Shoppe",1733,17.94,0.0,7.6,1.1],["2026-10-26","Hydration Drink 12pk","Vitamin Shoppe",1497,17.94,0.0,7.6,1.1],["2026-11-02","Hydration Drink 12pk","Vitamin Shoppe",1732,17.94,0.0,7.6,1.1],["2026-11-09","Hydration Drink 12pk","Vitamin Shoppe",1726,17.94,0.0,7.6,1.1]]
+;
+const rows=RAW.map(r=>{const[w,sku,ret,u,p,t,c,f]=r;const gross=u*p,trade=u*t,net=gross-trade,cost=u*(c+f);return{w,sku,ret,u,p,t,c,f,gross,trade,net,cost,gp:net-cost}});
+const weeks=[...new Set(rows.map(r=>r.w))].sort();
+const skus=[...new Set(rows.map(r=>r.sku))];
+const rets=["Target","Costco","Walmart","Vitamin Shoppe"];
+const $=id=>document.getElementById(id);
+const usd=v=>v>=1e6?"$"+(v/1e6).toFixed(2)+"M":"$"+Math.round(v/1e3).toLocaleString()+"K";
+const pct=v=>(v*100).toFixed(1)+"%";
+const fmtDate=s=>new Date(s+"T12:00:00").toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"});
+function agg(list){const a={u:0,gross:0,trade:0,net:0,cost:0,gp:0};list.forEach(r=>{for(const k in a)a[k]+=r[k]});a.gm=a.net?a.gp/a.net:0;return a}
+const sel=$("week");weeks.forEach(w=>{const o=document.createElement("option");o.value=w;o.textContent=fmtDate(w);sel.appendChild(o)});sel.value=weeks[weeks.length-1];
+
+function render(){
+  const wk=sel.value,i=weeks.indexOf(wk),pw=i>0?weeks[i-1]:null;
+  const floor=Math.max(0,Math.min(100,parseFloat($("floor").value)||35))/100;
+  const cur=rows.filter(r=>r.w===wk),prev=pw?rows.filter(r=>r.w===pw):[];
+  const A=agg(cur),P=prev.length?agg(prev):null;
+  $("weekLabel").textContent="Week of "+fmtDate(wk)+(pw?" · compared with week of "+fmtDate(pw):"");
+
+  // cells
+  const cells=[];skus.forEach(s=>rets.forEach(r=>{const c=cur.find(x=>x.sku===s&&x.ret===r),p=prev.find(x=>x.sku===s&&x.ret===r);if(!c)return;const ca=agg([c]);cells.push({s,r,c,p,gm:ca.gm,pgm:p?agg([p]).gm:null,net:ca.net})}));
+  const below=cells.filter(x=>x.gm<floor),near=cells.filter(x=>x.gm>=floor&&x.gm<floor+0.02);
+
+  // KPIs
+  const d=(a,b)=>b?(a-b)/b:null;
+  const kp=[
+    ["Net sales",usd(A.net),P?d(A.net,P.net):null,"pct"],
+    ["Gross margin",pct(A.gm),P?(A.gm-P.gm):null,"pts"],
+    ["Trade spend",usd(A.trade),P?d(A.trade,P.trade):null,"pct-inv"],
+    ["Below floor",below.length+" of "+cells.length,null,"cnt"]];
+  $("kpis").innerHTML=kp.map(([l,v,ch,t])=>{let dd="";if(ch!==null){const good=t==="pct-inv"?ch<=0:ch>=0;const s=t==="pts"?(ch>=0?"+":"")+(ch*100).toFixed(1)+" pts":(ch>=0?"+":"")+(ch*100).toFixed(1)+"%";dd=`<span class="d ${good?"up":"down"}">${s} vs prior week</span>`}else if(t==="cnt"){dd=`<span class="d ${below.length?"down":"up"}">${near.length} more within 2 pts</span>`}return`<div class="kpi"><span class="eyebrow">${l}</span><span class="v">${v}</span>${dd}</div>`}).join("");
+
+  // drivers
+  function driver(x){
+    if(!x.p)return{why:"No prior week to compare.",act:"Review pricing and cost setup."};
+    const c=x.c,p=x.p,parts=[];let act="";
+    if(c.t-p.t>0.01){parts.push(`trade spend rose to $${c.t.toFixed(2)} per case (from $${p.t.toFixed(2)})`);act=`Confirm the promo was approved at this rate. Check post promo lift covers the ${usd(c.trade)} spend before repeating it.`}
+    else if(c.t>0.01){parts.push(`ongoing trade of $${c.t.toFixed(2)} per case`);act="Review whether this standing allowance still earns its keep, or build it into list price."}
+    if(c.c-p.c>0.01){parts.push(`COGS up $${(c.c-p.c).toFixed(2)} per case to $${c.c.toFixed(2)}`);act=act||"Ask Ops about the cost increase. Model a price or pack change if it is permanent."}
+    if(c.u>p.u*1.25)parts.push(`units up ${Math.round((c.u/p.u-1)*100)}%`);
+    if(!parts.length){parts.push("structurally thin margin at this price and freight");act="Look at freight per case and the retailer price for this item."}
+    return{why:"Driver: "+parts.join(", ")+".",act:"Suggested next step: "+act};
+  }
+  const exc=[...below.map(x=>({...x,lvl:"bad"})),...near.map(x=>({...x,lvl:"warn"}))].sort((a,b)=>a.gm-b.gm);
+  $("exc").innerHTML=exc.length?exc.map(x=>{const dr=driver(x);const chg=x.pgm!==null?` <span class="note">(${(x.gm-x.pgm>=-0.0005?"+":"")+(Math.abs(x.gm-x.pgm)<0.0005?0:(x.gm-x.pgm)*100).toFixed(1)} pts)</span>`:"";return`<div class="ex ${x.lvl==="warn"?"warnx":""}"><div><b>${x.s}</b> at ${x.r} <span class="chip ${x.lvl==="bad"?"bad":"warn"}">${x.lvl==="bad"?"below floor":"near floor"}</span></div><div class="gm">${pct(x.gm)}${chg}</div><div class="why">${dr.why}</div><div class="act">${dr.act}</div></div>`}).join(""):`<div class="note">Nothing below or near the floor this week.</div>`;
+
+  // retailer table
+  const rr=rets.map(r=>{const a=agg(cur.filter(x=>x.ret===r)),b=P?agg(prev.filter(x=>x.ret===r)):null;return{r,a,b}});
+  $("retTbl").innerHTML=`<thead><tr><th>Retailer</th><th>Cases</th><th>Net sales</th><th>WoW</th><th>Trade</th><th>Gross margin</th><th>Status</th></tr></thead><tbody>`+rr.map(({r,a,b})=>{const w=b?(a.net-b.net)/b.net:null;const st=a.gm<floor?'<span class="chip bad">below</span>':a.gm<floor+0.02?'<span class="chip warn">near</span>':'<span class="chip ok">ok</span>';return`<tr><td>${r}</td><td>${a.u.toLocaleString()}</td><td>${usd(a.net)}</td><td class="${w===null?"":w>=0?"up":"down"}">${w===null?"–":(w>=0?"+":"")+(w*100).toFixed(1)+"%"}</td><td>${usd(a.trade)}</td><td>${pct(a.gm)}</td><td>${st}</td></tr>`}).join("")+`<tr><td><b>Total</b></td><td><b>${A.u.toLocaleString()}</b></td><td><b>${usd(A.net)}</b></td><td></td><td><b>${usd(A.trade)}</b></td><td><b>${pct(A.gm)}</b></td><td></td></tr></tbody>`;
+
+  // grid
+  $("grid").innerHTML=`<thead><tr><th>SKU</th>${rets.map(r=>`<th>${r}</th>`).join("")}</tr></thead><tbody>`+skus.map(s=>`<tr><td>${s}</td>${rets.map(r=>{const x=cells.find(c=>c.s===s&&c.r===r);if(!x)return"<td>–</td>";const cls=x.gm<floor?"below":x.gm<floor+0.02?"near":"";return`<td class="cell ${cls}">${pct(x.gm)}</td>`}).join("")}</tr>`).join("")+"</tbody>";
+
+  // AI summary
+  const lines=[];
+  if(P){const ch=(A.net-P.net)/P.net;lines.push(`Net sales were ${usd(A.net)}, ${ch>=0?"up":"down"} ${Math.abs(ch*100).toFixed(1)}% on last week. Gross margin ${A.gm>=P.gm?"improved":"slipped"} ${Math.abs((A.gm-P.gm)*100).toFixed(1)} points to ${pct(A.gm)}.`)}else lines.push(`Net sales were ${usd(A.net)} at a ${pct(A.gm)} gross margin.`);
+  if(P){const moves=rr.filter(x=>x.b).map(x=>({r:x.r,d:x.a.gm-x.b.gm})).sort((a,b)=>a.d-b.d);const worst=moves[0];if(worst.d<-0.005)lines.push(`${worst.r} drove most of the margin change, down ${Math.abs(worst.d*100).toFixed(1)} points to ${pct(rr.find(x=>x.r===worst.r).a.gm)}.`);else lines.push(`Retailer margins held steady. The biggest move was ${worst.r} at ${(worst.d>=0?"+":"")+(worst.d*100).toFixed(1)} points.`)}
+  if(below.length){const b0=below.sort((a,b)=>a.gm-b.gm)[0];lines.push(`${below.length} item${below.length>1?"s are":" is"} below the ${Math.round(floor*100)}% floor. The largest gap is ${b0.s} at ${b0.r} (${pct(b0.gm)}). ${driver(b0).why.replace("Driver: ","Main driver: ")}`)}else lines.push(`Every item cleared the ${Math.round(floor*100)}% floor.`);
+  const costUp=cells.filter(x=>x.p&&x.c.c-x.p.c>0.01);if(costUp.length){const names=[...new Set(costUp.map(x=>x.s))];lines.push(`Watch item: COGS increased on ${names.join(", ")} across ${costUp.length} retailer${costUp.length>1?"s":""}. If this is permanent, it needs a pricing conversation.`)}
+  else if(near.length)lines.push(`${near.length} more item${near.length>1?"s sit":" sits"} within 2 points of the floor and would fall below it with one promotion.`);
+  else lines.push(`No cost changes this week. Trade spend was ${usd(A.trade)}, or ${pct(A.trade/A.gross)} of gross sales.`);
+  $("aiList").innerHTML=lines.map(l=>`<li>${l}</li>`).join("");
+
+  // ---------- promotion ROI ----------
+  const promos=[];
+  skus.forEach(sk=>rets.forEach(r=>{
+    const hist=rows.filter(x=>x.sku===sk&&x.ret===r&&x.w<wk).sort((a,b)=>a.w<b.w?-1:1);
+    const c=cur.find(x=>x.sku===sk&&x.ret===r);if(!c||!hist.length)return;
+    const minT=Math.min(...hist.map(h=>h.t));
+    if(c.t<=minT+0.005)return;
+    const base=hist.filter(h=>h.t<=minT+0.005).slice(-4);if(!base.length)return;
+    const bu=base.reduce((a,h)=>a+h.u,0)/base.length;
+    const bgp=base.reduce((a,h)=>a+h.gp,0)/base.length;
+    const incU=c.u-bu,incGP=c.gp-bgp,roi=c.trade?incGP/c.trade:0;
+    const mPromo=c.p-c.t-c.c-c.f;
+    const beU=mPromo>0?bgp/mPromo:Infinity;
+    promos.push({sk,r,c,bu,bgp,incU,incGP,roi,lift:incU/bu,beLift:beU/bu-1});
+  }));
+  if(promos.length){
+    $("promoTbl").innerHTML=`<thead><tr><th>Promotion</th><th>Baseline cases</th><th>Promo cases</th><th>Incremental cases</th><th>Lift</th><th>Trade spend</th><th>Incremental GP</th><th>ROI</th><th>Breakeven lift</th></tr></thead><tbody>`+promos.map(x=>`<tr><td>${x.sk} at ${x.r}<br><span class="note">$${x.c.t.toFixed(2)} per case</span></td><td>${Math.round(x.bu).toLocaleString()}</td><td>${x.c.u.toLocaleString()}</td><td class="${x.incU>=0?"pos":"neg"}">${(x.incU>=0?"+":"−")+Math.abs(Math.round(x.incU)).toLocaleString()}</td><td>${(x.lift*100).toFixed(0)}%</td><td>${usd(x.c.trade)}</td><td class="${x.incGP>=0?"pos":"neg"}">${(x.incGP>=0?"+":"−")+"$"+Math.abs(Math.round(x.incGP)).toLocaleString()}</td><td class="${x.roi>=0?"pos":"neg"}">${(x.roi<0?"−":"")+Math.abs(x.roi*100).toFixed(0)}%</td><td>${isFinite(x.beLift)?(x.beLift*100).toFixed(0)+"%":"n/a"}</td></tr>`).join("")+"</tbody>";
+    const w0=promos.slice().sort((a,b)=>a.roi-b.roi)[0];
+    $("promoNote").textContent=w0.roi<0?`${w0.sk} at ${w0.r} lifted cases ${(w0.lift*100).toFixed(0)}% but needed ${(w0.beLift*100).toFixed(0)}% to break even, so it gave up $${Math.abs(Math.round(w0.incGP)).toLocaleString()} of gross profit versus a normal week.`:`All promotions this week paid back their trade spend.`;
+  }else{$("promoTbl").innerHTML=`<tbody><tr><td>No promotions running this week.</td></tr></tbody>`;$("promoNote").textContent="";}
+
+  // ---------- management attention ----------
+  const mg=[];
+  if(P){
+    const rm=rr.filter(x=>x.b).map(x=>({...x,d:x.a.gm-x.b.gm})).sort((a,b)=>a.d-b.d)[0];
+    const topTrade=cells.filter(x=>x.r===rm.r).sort((a,b)=>b.c.trade-a.c.trade)[0];
+    const st=rm.a.gm<floor?"now below the floor":rm.a.gm<floor+0.02?"now within 2 points of the floor":"still above the floor";
+    mg.push(["Biggest margin pressure",`${rm.r}: ${pct(rm.a.gm)} gross margin, ${rm.d<0?"down":"up"} ${Math.abs(rm.d*100).toFixed(1)} pts`,`${st[0].toUpperCase()+st.slice(1)}. ${topTrade&&topTrade.c.trade>0?`Largest driver is ${usd(topTrade.c.trade)} of trade on ${topTrade.s}.`:""}`]);
+  }else{const rm=rr.slice().sort((a,b)=>a.a.gm-b.a.gm)[0];mg.push(["Biggest margin pressure",`${rm.r}: ${pct(rm.a.gm)} gross margin`,"Lowest margin retailer this week."])}
+  const costUp2=cells.filter(x=>x.p&&x.c.c-x.p.c>0.01);
+  let prodSku,prodLine,prodText;
+  if(costUp2.length){
+    prodSku=costUp2[0].s;const x0=costUp2[0];const inc=x0.c.c-x0.p.c;
+    const bel=cells.filter(x=>x.s===prodSku&&x.gm<floor).map(x=>x.r);
+    prodLine=`${prodSku}: COGS up $${inc.toFixed(2)} per case (${(inc/x0.p.c*100).toFixed(0)}%)`;
+    prodText=bel.length?`Now below the floor at ${bel.join(" and ")}. Needs a cost or pricing review.`:"Margin still clears the floor, but the cushion is shrinking.";
+  }else{
+    const nonPromo=below.filter(x=>!promos.find(p=>p.sk===x.s&&p.r===x.r)).sort((a,b)=>a.gm-b.gm)[0];
+    if(nonPromo){prodSku=nonPromo.s;prodLine=`${nonPromo.s} at ${nonPromo.r}: ${pct(nonPromo.gm)}`;prodText="Below the floor without a promotion. Review price and freight.";}
+    else{prodLine="No product needs a cost review this week";prodText="Below floor items are explained by promotions.";}
+  }
+  mg.push(["Needs pricing or cost review",prodLine,prodText]);
+  const acts=[];
+  const badPromo=promos.filter(x=>x.roi<0).sort((a,b)=>a.roi-b.roi)[0];
+  if(badPromo)acts.push(`Do not repeat the ${badPromo.r} ${badPromo.sk.replace(/ 12ct| 12pk/,"")} promo at $${badPromo.c.t.toFixed(2)} per case unless lift can reach ${(badPromo.beLift*100).toFixed(0)}%.`);
+  if(costUp2.length){
+    const worst=cells.filter(x=>x.s===prodSku).sort((a,b)=>a.gm-b.gm)[0];
+    const need=(worst.c.c+worst.c.f)/(1-floor)+worst.c.t;
+    if(need>worst.c.p)acts.push(`Confirm the ${prodSku.replace(/ 12ct| 12pk/,"")} cost increase with Ops. Holding ${Math.round(floor*100)}% at ${worst.r} needs about +$${(need-worst.c.p).toFixed(2)} per case on price.`);
+    else acts.push(`Confirm the ${prodSku.replace(/ 12ct| 12pk/,"")} cost increase with Ops before it spreads.`);
+  }
+  if(!acts.length)acts.push(below.length?"Review the items below the floor with Sales before the next order cycle.":"No action needed. Keep monitoring promo spend.");
+  mg.push(["Recommended action",acts[0],acts.slice(1).join(" ")]);
+  $("mgmt").innerHTML=mg.map(([q,a,t])=>`<li><span class="q">${q}</span><span class="a">${a}</span><span class="t">${t}</span></li>`).join("");
+
+  drawChart(floor);
+}
+
+// ---------- working capital (sample month end balances) ----------
+(function(){
+  const ttmSales=62.0e6,ttmCogs=37.5e6;
+  const m={Sep:{ar:7.20e6,inv:7.60e6,ap:4.30e6},Oct:{ar:7.85e6,inv:8.45e6,ap:4.20e6}};
+  const calc=b=>{const dso=b.ar/ttmSales*365,dio=b.inv/ttmCogs*365,dpo=b.ap/ttmCogs*365;return{...b,dso,dio,dpo,ccc:dso+dio-dpo}};
+  const a=calc(m.Oct),b=calc(m.Sep);
+  const mm=v=>"$"+(v/1e6).toFixed(2)+"M";
+  const tiles=[["Accounts receivable",mm(a.ar),a.ar-b.ar,`DSO ${a.dso.toFixed(0)} days`,false],["Inventory",mm(a.inv),a.inv-b.inv,`DIO ${a.dio.toFixed(0)} days`,false],["Accounts payable",mm(a.ap),a.ap-b.ap,`DPO ${a.dpo.toFixed(0)} days`,true],["Cash conversion cycle",a.ccc.toFixed(0)+" days",null,"",false]];
+  document.getElementById("wc").innerHTML=tiles.map(([l,v,d,sub,apGood])=>{let dd;if(d===null){const c=a.ccc-b.ccc;dd=`<span class="d ${c<=0?"up":"down"}">${c>=0?"+":"−"}${Math.abs(c).toFixed(0)} days vs September</span>`}else{const good=apGood?d>=0:d<=0;dd=`<span class="d ${good?"up":"down"}">${d>=0?"+":"−"}${mm(Math.abs(d))} vs Sep · ${sub}</span>`}return`<div class="kpi"><span class="eyebrow">${l}</span><span class="v">${v}</span>${dd}</div>`}).join("");
+  const cashHit=(a.ar-b.ar)+(a.inv-b.inv)-(a.ap-b.ap);
+  document.getElementById("wcNote").textContent=`Working capital absorbed about ${mm(cashHit)} of cash in October. Inventory (+${mm(a.inv-b.inv)}) is the main driver, then slower collections (+${mm(a.ar-b.ar)} AR). Question for S&OP: is the inventory build planned for upcoming retail launches, or is the demand plan running ahead of sales? Uses sample balances and trailing 12 month net sales of $62.0M and COGS of $37.5M.`;
+})();
+
+function drawChart(floor){
+  const W=760,H=240,L=70,R=66,T=16,B=32;
+  const ser=weeks.map(w=>agg(rows.filter(r=>r.w===w)));
+  const nmax=Math.ceil(Math.max(...ser.map(s=>s.net))/2e5)*2e5,nmin=Math.floor(Math.min(...ser.map(s=>s.net))/2e5)*2e5-2e5;
+  const gmin=0.30,gmax=0.45;
+  const x=i=>L+i*(W-L-R)/(weeks.length-1),yn=v=>T+(H-T-B)*(1-(v-nmin)/(nmax-nmin)),yg=v=>T+(H-T-B)*(1-(v-gmin)/(gmax-gmin));
+  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Net sales and gross margin by week">`;
+  for(let k=0;k<=3;k++){const v=nmin+(nmax-nmin)*k/3,y=yn(v);s+=`<line x1="${L}" x2="${W-R}" y1="${y}" y2="${y}" stroke="var(--line)"/><text x="${L-8}" y="${y+4}" text-anchor="end" font-size="11" fill="var(--muted)" font-family="JetBrains Mono,monospace">${usd(v)}</text>`}
+  [0.30,0.35,0.40,0.45].forEach(v=>{s+=`<text x="${W-R+8}" y="${yg(v)+4}" font-size="11" fill="var(--muted)" font-family="JetBrains Mono,monospace">${Math.round(v*100)}%</text>`});
+  if(floor>=gmin&&floor<=gmax)s+=`<line x1="${L}" x2="${W-R}" y1="${yg(floor)}" y2="${yg(floor)}" stroke="var(--bad)" stroke-dasharray="4 4"/>`;
+  const np=ser.map((v,i)=>`${x(i)},${yn(v.net)}`).join(" ");
+  s+=`<polygon points="${x(0)},${H-B} ${np} ${x(ser.length-1)},${H-B}" fill="var(--accent)" fill-opacity=".1"/><polyline points="${np}" fill="none" stroke="var(--accent)" stroke-width="2.5"/>`;
+  s+=`<polyline points="${ser.map((v,i)=>`${x(i)},${yg(v.gm)}`).join(" ")}" fill="none" stroke="var(--warn)" stroke-width="2"/>`;
+  const sw=weeks.indexOf(sel.value);
+  ser.forEach((v,i)=>{s+=`<circle cx="${x(i)}" cy="${yn(v.net)}" r="${i===sw?5:3}" fill="var(--accent)"/><circle cx="${x(i)}" cy="${yg(v.gm)}" r="${i===sw?5:3}" fill="var(--warn)"/><text x="${x(i)}" y="${H-10}" text-anchor="middle" font-size="11" fill="${i===sw?"var(--fg)":"var(--muted)"}" font-weight="${i===sw?600:400}">${fmtDate(weeks[i]).replace(/, \d{4}/,"")}</text>`});
+  s+=`<text transform="translate(12 ${(T+H-B)/2}) rotate(-90)" text-anchor="middle" font-size="11" fill="var(--accent)" font-weight="600">Net sales ($)</text>`;
+  s+=`<text transform="translate(${W-8} ${(T+H-B)/2}) rotate(90)" text-anchor="middle" font-size="11" fill="var(--warn)" font-weight="600">Gross margin (%)</text>`;
+  s+="</svg>";$("chart").innerHTML=s;
+}
+sel.addEventListener("change",render);$("floor").addEventListener("input",render);render();
+</script>
